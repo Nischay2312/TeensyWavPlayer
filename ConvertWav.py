@@ -6,8 +6,8 @@ from pydub import AudioSegment
 target_sr = 44100
 
 # define the input and output folders
-input_folder = r"C:\Users\nisch\OneDrive - UBC\UBC_UAS\2023\TeensyAudioTest\Input"
-output_folder = r"C:\Users\nisch\OneDrive - UBC\UBC_UAS\2023\TeensyAudioTest\Output"
+input_folder = r"C:\Users\nisch\OneDrive - UBC\UBC_UAS\2023\TeensyWavPlayer\Input"
+output_folder = r"C:\Users\nisch\OneDrive - UBC\UBC_UAS\2023\TeensyWavPlayer\Output"
 
 # get a list of all .wav files in the input folder
 file_list = [f for f in os.listdir(input_folder) if f.endswith(".wav")]
