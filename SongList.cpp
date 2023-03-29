@@ -30,7 +30,8 @@ char* SongList::stringUpper(char* string_in){
 void SongList::DisplayCurrentList(){
   uint16_t lim = numsongs < (counter*10 + 10)?numsongs: (counter*10 + 10);
   uint16_t start = 0 + (counter*10);
-  Serial.println("Current 10 electable Songs Shown Below:\n------------------------------");
+  Serial.println("Current 10 Selectable Songs Shown Below:");
+  Serial.println("------------------------------");
   for(uint16_t i = start; i < lim; i++){
     Serial.printf("%d. ", i - (counter*10));
     Serial.println(Songlist[i]);
@@ -39,7 +40,8 @@ void SongList::DisplayCurrentList(){
 }
 
 void SongList::DisplayListContents(){
-  Serial.println("Full List of Songs Shown Below:\n------------------------------");
+  Serial.println("Full List of Songs Shown Below:");
+  Serial.println("------------------------------");
   for(int i = 0; i < numsongs; i++){
     Serial.printf("%d. ",i);
     Serial.println(Songlist[i]);

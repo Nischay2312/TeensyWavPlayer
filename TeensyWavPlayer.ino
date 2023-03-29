@@ -5,6 +5,7 @@
 #include <SerialFlash.h>
 #include <String.h>
 #include "SongList.h"
+#include "Assets.h"
 
 #define PIN_SERVOR 5
 #define ext_pos 130
@@ -27,7 +28,7 @@ AudioConnection          patchCord1(playWav1, 0, audioOutput, 0);
 // Use these with the Teensy Audio Shield
 #define SDCARD_CS_PIN    10
 
-void Play();
+void Help();
 void Stop();
 
 SongList MyList;
@@ -59,7 +60,7 @@ void setup() {
   else{
     Serial.println("USING PWM SOUND OUTPUT.\nAMP_IN is PIN 3");
   }
-
+  Help();
   MyList.SearchSongs(LastDir);
   Serial.println("Setup Done");
 }
@@ -82,8 +83,8 @@ void loop() {
     if (Serial.read() == '\n') {}
     //Serial.printf("Read This %c\n", mode);
     switch(mode){
-      case 'p':
-        Play();
+      case 'h':
+        Help();
         break;
       case 's':
         Stop();
@@ -118,13 +119,31 @@ void loop() {
    }
 }
 
-void Play(){
-  Serial.print("OLD CODE NOT USED ANYMORE\n");
-}
-
 void Stop(){
   Serial.println("Sound Stopped");
   playWav1.stop();
 }
 
-
+/*
+Function to let the user know how to use the Music Player.
+*/
+void Help() {
+  Serial.println(Message);  
+  Serial.println("---------------------------------------------------------");
+  Serial.println("Thank you for using the Music Player v1.0. ~~ Nischay J. [28th March 2023]");
+  Serial.println("The Player is very simple to operate.");
+  Serial.println("You operate using single character inputs.");
+  Serial.println("The music player will display all available track at startup.");
+  Serial.println("At a time only 10 can be selected.");
+  Serial.println("Press 'l'(Lowercase L) to display the current 10 selected tracks." );
+  Serial.println("To play a specific track, send the track number (0-9).");
+  Serial.println("To stop a track, press 's'");  
+  Serial.println("To go to the next 10 tracks press 'f' the next 10 tracks will be displayed.");
+  Serial.println("To go to the last 10 tracks press 'b' the previous 10 tracks will be displayed.");
+  Serial.println("To extend the arm, send 'e'.");
+  Serial.println("To retract the arm, send 'r'.");
+  Serial.println("Note: The arm is a servo motor and was used to test if the music playing block the Teensy.");
+  Serial.println("To see this Help message again, press 'h'.");
+  Serial.println("Enjoy your music!");
+  Serial.println("---------------------------------------------------------");
+}
