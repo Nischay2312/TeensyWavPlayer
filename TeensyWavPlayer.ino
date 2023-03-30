@@ -30,6 +30,9 @@ AudioConnection          patchCord1(playWav1, 0, audioOutput, 0);
 
 void Help();
 void Stop();
+bool StartLoop = false;
+void TrackLoop(bool flag);
+void ToggleLoop();
 
 SongList MyList;
 File LastDir;
@@ -77,6 +80,7 @@ void playFile(const char *filename)
 }
 
 void loop() {
+  TrackLoop(StartLoop);
   while (Serial.available() > 0) {
     char mode = Serial.read();
     // look for the newline. That's the end of your sentence:
@@ -85,6 +89,9 @@ void loop() {
     switch(mode){
       case 'h':
         Help();
+        break;
+      case 'x':
+        ToggleLoop();
         break;
       case 's':
         Stop();
@@ -117,11 +124,38 @@ void loop() {
         break;
     }
    }
+   delay(20);
 }
 
+/*
+Function to Stop Playing Music
+*/
 void Stop(){
   Serial.println("Sound Stopped");
   playWav1.stop();
+}
+
+/*
+Function to Enable Sound Looping
+*/
+void TrackLoop(bool flag){
+  if(!flag){
+    return;
+  }
+  else{
+    //Check if music is stopped, if yes then play the last song
+    if(!playWav1.isPlaying()){
+      playFile(MyList.SendTrack(MyList.CurrentTrackNo));
+    }
+  }
+}
+
+/*
+Function to toggle the Loop Flag
+*/
+void ToggleLoop(){
+  StartLoop = !StartLoop;
+  Serial.printf("Looping Toggled, it is now: %s\n", StartLoop? "ENALBED": "DISABLED");
 }
 
 /*
@@ -138,6 +172,7 @@ void Help() {
   Serial.println("Press 'l'(Lowercase L) to display the current 10 selected tracks." );
   Serial.println("To play a specific track, send the track number (0-9).");
   Serial.println("To stop a track, press 's'");  
+  Serial.println("Send 'x' to toggle loop of track.");
   Serial.println("To go to the next 10 tracks press 'f' the next 10 tracks will be displayed.");
   Serial.println("To go to the last 10 tracks press 'b' the previous 10 tracks will be displayed.");
   Serial.println("To extend the arm, send 'e'.");

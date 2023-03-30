@@ -84,6 +84,7 @@ int SongList::isInList(char tracknum){
 }
 
 char* SongList::SendTrack(uint16_t tracknum){
+  CurrentTrackNo = tracknum;
   return Songlist[tracknum];
 }
 

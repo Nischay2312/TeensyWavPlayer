@@ -20,6 +20,7 @@ class SongList{
     void AddMoreListMember(size_t Size);
     char* stringUpper(char* string_in);
   public:
+    uint16_t CurrentTrackNo;
     /*
     SongList Class Constructor
     Initializes the list data structure 
