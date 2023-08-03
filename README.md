@@ -9,7 +9,7 @@ A WAV player based on Teensy 4.0. Controller using Serial Input.<p>
 2. [4 Ohm 3W Speaker](https://a.co/d/9ChifTU)
 3. [Adafruit SD Card Breakout Board](https://a.co/d/350EmVX)
 4. [MAX98357A I2S Amplifier](https://a.co/d/iPsQDQp)
-5. [16 GB MicroSD Card](https://a.co/d/iPsQDQp)
+5. [16 GB MicroSD Card](https://a.co/d/a0LzxsX)
 6. Basic electronic componets (jumper wires, soldering iron, breadboard, micro usb cable)
 
 # Connections:
